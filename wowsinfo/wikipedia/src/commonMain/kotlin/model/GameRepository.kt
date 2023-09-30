@@ -1,5 +1,7 @@
 package model
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class GameRepository(
     val ships: Map<String, GameShip>,
     val achievements: Map<String, GameAchievement>,
@@ -15,15 +17,18 @@ data class GameRepository(
     val number: Map<String, WoWsNumber>,
 )
 
+@Serializable
 data class GameAlias (
     val alias: String
 )
 
+@Serializable
 data class GameInfo (
     val regions: List<String>,
     val types: List<String>
 )
 
+@Serializable
 data class WoWsNumber (
     val damage: Long,
     val frags: Double,
