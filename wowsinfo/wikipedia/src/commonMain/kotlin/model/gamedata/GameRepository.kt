@@ -1,5 +1,7 @@
-package model
+package model.gamedata
+
 import kotlinx.serialization.Serializable
+import model.gamedata.GameAbility
 
 @Serializable
 data class GameRepository(
@@ -18,20 +20,20 @@ data class GameRepository(
 )
 
 @Serializable
-data class GameAlias (
-    val alias: String
+data class GameAlias(
+    val alias: String,
 )
 
 @Serializable
-data class GameInfo (
+data class GameInfo(
     val regions: List<String>,
-    val types: List<String>
+    val types: List<String>,
 )
 
 @Serializable
-data class WoWsNumber (
+data class WoWsNumber(
     val damage: Long,
     val frags: Double,
     val winrate: Double,
-    val battles: Long
+    val battles: Long,
 )

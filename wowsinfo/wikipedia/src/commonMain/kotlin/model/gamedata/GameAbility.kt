@@ -1,4 +1,4 @@
-package model
+package model.gamedata
 
 import kotlinx.serialization.Serializable
 

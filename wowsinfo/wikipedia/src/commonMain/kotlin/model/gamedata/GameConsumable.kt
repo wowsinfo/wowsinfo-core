@@ -1,7 +1,9 @@
-package model
+package model.gamedata
+
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GameAchievement(
+data class GameConsumable(
     val name: String,
+    val type: String,
 )

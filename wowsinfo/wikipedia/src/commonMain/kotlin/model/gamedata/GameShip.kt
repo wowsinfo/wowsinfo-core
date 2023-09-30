@@ -1,7 +1,7 @@
-package model
+package model.gamedata
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GameAircraft(
+data class GameShip(
     val name: String,
 )
