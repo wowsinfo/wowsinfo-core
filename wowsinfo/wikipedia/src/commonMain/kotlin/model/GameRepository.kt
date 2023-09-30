@@ -12,7 +12,7 @@ data class GameRepository(
     val skills: Map<String, GameSkill>,
     val game: GameInfo,
     val version: String,
-    val number: <String, WoWsNumber>,
+    val number: Map<String, WoWsNumber>,
 )
 
 data class GameAlias (
