@@ -18,17 +18,17 @@ data class GameSkill(
 
 @Serializable
 data class LogicTrigger(
-    val burnCount: Float,
-    val changePriorityTargetPenalty: Float,
+    val burnCount: Double,
+    val changePriorityTargetPenalty: Double,
     val consumableType: String,
-    val coolingDelay: Float,
-    val coolingInterpolator: List<List<Float>>,
+    val coolingDelay: Double,
+    val coolingInterpolator: List<List<Double>>,
     val dividerType: String,
-    val dividerValue: Float,
-    val duration: Float,
-    val energyCoeff: Float,
-    val floodCount: Float,
-    val heatInterpolator: List<List<Float>>,
+    val dividerValue: Double,
+    val duration: Double,
+    val energyCoeff: Double,
+    val floodCount: Double,
+    val heatInterpolator: List<List<Double>>,
     val modifiers: GameModifier,
     val triggerDescIds: String,
     val triggerType: String

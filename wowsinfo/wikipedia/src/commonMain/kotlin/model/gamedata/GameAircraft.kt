@@ -7,24 +7,24 @@ data class GameAircraft(
     val type: String,
     val nation: String,
     val name: String,
-    val health: Float?,
+    val health: Double?,
     val totalPlanes: Int?,
-    val visibility: Float?,
-    val speed: Float?,
+    val visibility: Double?,
+    val speed: Double?,
     val aircraft: AircraftInfo?,
 )
 
 @Serializable
 data class AircraftInfo(
-    val restoreTime: Float,
+    val restoreTime: Double,
     val maxAircraft: Int,
     val attacker: Int,
     val attackCount: Int,
-    val cooldown: Float,
-    val minSpeed: Float,
-    val maxSpeed: Float,
-    val boostTime: Float,
-    val boostReload: Float?,
+    val cooldown: Double,
+    val minSpeed: Double,
+    val maxSpeed: Double,
+    val boostTime: Double,
+    val boostReload: Double?,
     val bombName: String,
     val consumables: List<List<GameConsumable>>?,
 )
