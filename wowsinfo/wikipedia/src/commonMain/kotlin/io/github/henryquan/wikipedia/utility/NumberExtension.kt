@@ -1,4 +1,4 @@
-package utility
+package io.github.henryquan.wikipedia.utility
 
 import kotlin.math.pow
 import kotlin.math.roundToInt

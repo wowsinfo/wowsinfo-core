@@ -1,4 +1,4 @@
-package model.gamedata
+package io.github.henryquan.wikipedia.model.gamedata
 
 import kotlinx.serialization.Serializable
 

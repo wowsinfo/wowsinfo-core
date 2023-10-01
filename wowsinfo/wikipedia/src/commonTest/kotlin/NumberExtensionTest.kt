@@ -1,7 +1,7 @@
-import utility.asPercentString
-import utility.toDisplayString
-import utility.toFixedDigits
-import utility.toPercentString
+import io.github.henryquan.wikipedia.utility.asPercentString
+import io.github.henryquan.wikipedia.utility.toDisplayString
+import io.github.henryquan.wikipedia.utility.toFixedDigits
+import io.github.henryquan.wikipedia.utility.toPercentString
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

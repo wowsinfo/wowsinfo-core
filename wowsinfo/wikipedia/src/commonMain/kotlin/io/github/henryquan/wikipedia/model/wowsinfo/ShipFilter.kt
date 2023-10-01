@@ -1,4 +1,4 @@
-package model.wowsinfo
+package io.github.henryquan.wikipedia.model.wowsinfo
 
 interface ShipFilterable {
     val name: String

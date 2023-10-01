@@ -1,7 +1,6 @@
-package model.gamedata
+package io.github.henryquan.wikipedia.model.gamedata
 
 import kotlinx.serialization.Serializable
-import model.gamedata.GameAbility
 
 @Serializable
 data class GameRepository(

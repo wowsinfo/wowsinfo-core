@@ -1,8 +1,8 @@
-package model.gamedata
+package io.github.henryquan.wikipedia.model.gamedata
 
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
-import model.wowsinfo.ShipFilterable
+import io.github.henryquan.wikipedia.model.wowsinfo.ShipFilterable
 
 @Serializable
 data class GameShip(

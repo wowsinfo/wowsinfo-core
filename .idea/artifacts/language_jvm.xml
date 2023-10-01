@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="language-jvm">
+    <output-path>$PROJECT_DIR$/wowsinfo/language/build/libs</output-path>
+    <root id="archive" name="language-jvm.jar">
+      <element id="module-output" name="wowsinfo.language.jvmMain" />
+    </root>
+  </artifact>
+</component>

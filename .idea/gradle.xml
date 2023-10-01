@@ -9,6 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/wowsinfo" />
+            <option value="$PROJECT_DIR$/wowsinfo/language" />
             <option value="$PROJECT_DIR$/wowsinfo/wikipedia" />
           </set>
         </option>

@@ -14,7 +14,7 @@ kotlin {
         }
     }
     js(IR) {
-        moduleName = "wowsinfo-wikipedia"
+        moduleName = "wowsinfo-language"
         nodejs {}
         binaries.executable()
         generateTypeScriptDefinitions()
@@ -35,7 +35,6 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
-                implementation(project(":language"))
             }
         }
         val commonTest by getting {

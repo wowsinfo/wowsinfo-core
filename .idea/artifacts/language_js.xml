@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="language-js">
+    <output-path>$PROJECT_DIR$/wowsinfo/language/build/libs</output-path>
+    <root id="archive" name="language-js.jar">
+      <element id="module-output" name="wowsinfo.language.jsMain" />
+    </root>
+  </artifact>
+</component>
