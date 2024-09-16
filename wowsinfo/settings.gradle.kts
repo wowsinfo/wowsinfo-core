@@ -11,8 +11,8 @@ pluginManagement {
 }
 
 rootProject.name = "wowsinfo"
-include("wikipedia")
-include("language")
+include(":wikipedia")
+include(":language")
 
 val wowsinfoGroup = "io.github.henryquan"
 extra["group"] = "io.github.henryquan"
