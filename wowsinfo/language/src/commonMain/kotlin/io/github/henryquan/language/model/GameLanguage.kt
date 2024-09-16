@@ -1,16 +1,10 @@
 package io.github.henryquan.language.model
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+typealias GameLanguage = Map<String, String>
 
-@Serializable
-data class GameLanguage(
-    @SerialName("en")
-    val english: Map<String, String>,
-    @SerialName("ja")
-    val japanese: Map<String, String>,
-    @SerialName("zh_sg")
-    val chinese: Map<String, String>,
-    @SerialName("zh_tw")
-    val chineseTraditional: Map<String, String>,
-)
+enum class SupportedLanguage(val code: String) {
+    ENGLISH("en"),
+    JAPANESE("ja"),
+    CHINESE_SIMPLIFIED("zh_sg"),
+    CHINESE_TRADITIONAL("zh_tw"),
+}
