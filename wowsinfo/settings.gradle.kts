@@ -1,18 +1,17 @@
+rootProject.name = "wowsinfo-core"
+
 pluginManagement {
-    val kotlinVersion: String by settings
-    plugins {
-        kotlin("multiplatform") version kotlinVersion apply false
-        kotlin("plugin.serialization") version kotlinVersion apply false
-    }
     repositories {
+        google()
         mavenCentral()
         gradlePluginPortal()
     }
 }
 
-rootProject.name = "wowsinfo"
 include(":wikipedia")
 include(":language")
+include(":general")
+include(":service")
 
 val wowsinfoGroup = "io.github.henryquan"
 extra["group"] = "io.github.henryquan"

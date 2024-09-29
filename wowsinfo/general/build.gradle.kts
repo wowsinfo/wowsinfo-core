@@ -1,6 +1,5 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization")
 }
 
 kotlin {
@@ -13,11 +12,11 @@ kotlin {
             }
         }
     }
-    js {
-        moduleName = "wowsinfo-language"
-        nodejs {}
+    js(IR) {
+        moduleName = "wowsinfo-general"
         binaries.executable()
         generateTypeScriptDefinitions()
+        nodejs()
     }
     iosX64()
     iosArm64()
@@ -25,9 +24,6 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
-            dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
-            }
         }
         val commonTest by getting {
             dependencies {

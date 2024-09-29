@@ -5,7 +5,6 @@ plugins {
 
 kotlin {
     jvm {
-        // jvmToolchain(8)
         withJava()
         testRuns.named("test") {
             executionTask.configure {
@@ -14,10 +13,10 @@ kotlin {
         }
     }
     js {
-        moduleName = "wowsinfo-language"
-        nodejs {}
+        moduleName = "wowsinfo-service"
         binaries.executable()
         generateTypeScriptDefinitions()
+        nodejs()
     }
     iosX64()
     iosArm64()
@@ -25,9 +24,7 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
-            dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
-            }
+
         }
         val commonTest by getting {
             dependencies {
