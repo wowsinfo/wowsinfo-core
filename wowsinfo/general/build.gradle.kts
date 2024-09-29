@@ -23,12 +23,9 @@ kotlin {
     iosSimulatorArm64()
 
     sourceSets {
-        val commonMain by getting {
-        }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
+        commonMain.dependencies {  }
+        commonTest.dependencies {
+            implementation(kotlin("test"))
         }
     }
 }
