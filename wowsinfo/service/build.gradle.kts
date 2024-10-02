@@ -4,34 +4,45 @@ plugins {
 }
 
 kotlin {
-    jvm {
-        withJava()
-        testRuns.named("test") {
-            executionTask.configure {
-                useJUnitPlatform()
-            }
-        }
-    }
+    // experiment with JavaScript first
     js {
         moduleName = "wowsinfo-service"
         binaries.executable()
         generateTypeScriptDefinitions()
         nodejs()
-    }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+    }    
+    // jvm {
+    //     withJava()
+    //     testRuns.named("test") {
+    //         executionTask.configure {
+    //             useJUnitPlatform()
+    //         }
+    //     }
+    // }
+    // iosX64()
+    // iosArm64()
+    // iosSimulatorArm64()
 
     sourceSets {
         commonMain.dependencies {
             implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.client.serialization)
+
             implementation(libs.kotlinx.serialization.json)
+            implementation(libs.kotlinx.coroutines.core)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
         }
         jsMain.dependencies {
             implementation(libs.ktor.client.js)
+        }
+
+        all {
+            languageSettings {
+                optIn("kotlin.js.ExperimentalJsExport")
+            }
         }
     }
 }

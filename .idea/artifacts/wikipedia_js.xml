@@ -2,7 +2,7 @@
   <artifact type="jar" name="wikipedia-js">
     <output-path>$PROJECT_DIR$/wowsinfo/wikipedia/build/libs</output-path>
     <root id="archive" name="wikipedia-js.jar">
-      <element id="module-output" name="wowsinfo.wikipedia.jsMain" />
+      <element id="module-output" name="wowsinfo-core.wikipedia.jsMain" />
     </root>
   </artifact>
 </component>
