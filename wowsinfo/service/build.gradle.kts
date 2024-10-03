@@ -10,6 +10,7 @@ kotlin {
         binaries.executable()
         generateTypeScriptDefinitions()
         nodejs()
+        useEsModules()
     }    
     // jvm {
     //     withJava()
@@ -28,12 +29,14 @@ kotlin {
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.client.serialization)
+            implementation(libs.ktor.serialization.kotlinx.json)
 
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.coroutines.core)
         }
         commonTest.dependencies {
-            implementation(kotlin("test"))
+            implementation(libs.kotlin.test)
+            implementation(libs.kotlinx.coroutines.test)
         }
         jsMain.dependencies {
             implementation(libs.ktor.client.js)

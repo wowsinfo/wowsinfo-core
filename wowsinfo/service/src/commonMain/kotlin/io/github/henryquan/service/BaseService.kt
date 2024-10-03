@@ -4,17 +4,24 @@ import io.ktor.client.engine.HttpClientEngineConfig
 import io.ktor.client.engine.HttpClientEngineFactory
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
+import io.ktor.client.request.header
 import io.ktor.client.request.parameter
-import kotlin.js.json
+import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
+import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.json.Json
 
 expect fun getEngineFactory(): HttpClientEngineFactory<HttpClientEngineConfig>
 
 abstract class BaseService {
     abstract val baseUrl: String
 
-    val client = HttpClient(getEngineFactory()) {
+    open val client = HttpClient(getEngineFactory()) {
         install(ContentNegotiation) {
-            json()
+            json(Json {
+                isLenient = true
+                ignoreUnknownKeys = true
+            })
         }
     }
 
@@ -22,10 +29,12 @@ abstract class BaseService {
         path: String,
         params: Map<String, String> = emptyMap()
     ): T {
-        return client.get("$baseUrl$path") {
+        val response = client.get("$baseUrl$path") {
             params.forEach { (key, value) ->
                 parameter(key, value)
             }
-        }.body()
+        }
+        println(response.body<String>())
+        return response.body<T>()
     }
 }
