@@ -3,23 +3,27 @@ See https://github.com/wowsinfo/wowsinfo-core/issues/3#issuecomment-2395750182
 Patch the JS output of wowsinfo-service to temporarily fix the opeque response
 """
 
+import subprocess
+
 TEMPLATE = r"""
 // this is a temp solution for Apple
 try {
 require('react-native');
-// need to convert response to text, then pass it to channelFromStream as a ReadableStream in ByteArray
+// need to convert response to buffer, then pass it to channelFromStream as a ReadableStream in ByteArray
 const myBody = new ReadableStream({
     start(controller) {
-    response?.text()?.then(text => {
-        const encoder = new TextEncoder();
-        const encoded = encoder.encode(text);
-        controller.enqueue(encoded);
-        controller.close();
-    });
+        response.arrayBuffer().then(buffer => {
+            controller.enqueue(new Uint8Array(buffer));
+            controller.close();
+        }).catch(error => {
+            controller.error(error);
+        });
     }
 });
 return channelFromStream(|PARAM1|, myBody);
-} catch {}
+} catch (error) {
+    throw error;
+}
 
 """
 
@@ -47,4 +51,8 @@ def patch_service(path: str):
     print(f'Patched {path}')
 
 if __name__ == '__main__':
+    # run gradlew :service:jsProductionRun and patch
+    print('Running gradlew :service:jsProductionRun')
+    gradlew_task = subprocess.run(['./gradlew', ':service:jsProductionRun'], capture_output=True)
+    gradlew_task.check_returncode()
     patch_service('build/js/packages/wowsinfo-service/kotlin/ktor-ktor-client-core.mjs')

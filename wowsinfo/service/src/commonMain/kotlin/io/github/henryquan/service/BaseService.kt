@@ -4,6 +4,7 @@ import io.ktor.client.engine.HttpClientEngineConfig
 import io.ktor.client.engine.HttpClientEngineFactory
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
+import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
@@ -18,6 +19,7 @@ abstract class BaseService {
             json(Json {
                 isLenient = true
                 ignoreUnknownKeys = true
+                explicitNulls = false
             })
         }
     }
