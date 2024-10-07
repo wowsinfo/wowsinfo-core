@@ -7,8 +7,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class WarGamingResponse<T>(
     val status: String,
-    val meta: WarGamingMeta?,
-    val data: T?
+    val meta: WarGamingMeta? = null,
+    val data: T? = null,
 ) {
     val isOk: Boolean
         get() = status == "ok" && data != null
@@ -21,18 +21,18 @@ data class WarGamingResponse<T>(
 @Serializable
 data class WarGamingMeta(
     val count: Int,
-    val hidden: Int?,
+    val hidden: Int? = null,
     @SerialName("page_total")
-    val pageTotal: Int?,
-    val total: Int?,
-    val limit: Int?,
-    val page: Int?,
+    val pageTotal: Int? = null,
+    val total: Int? = null,
+    val limit: Int? = null,
+    val page: Int? = null,
 )
 
 @JsExport
 @Serializable
 data class Player(
     @SerialName("account_id")
-    val accountId: Int,  // numeric field for account ID
+    val accountId: String,  // numeric field for account ID, need to be string to avoid overflow
     val nickname: String   // string field for player name
 )

@@ -1,14 +1,8 @@
 package io.github.henryquan.service
 
 import BaseService
-import getEngineFactory
 import io.github.henryquan.model.Player
 import io.github.henryquan.model.WarGamingResponse
-import io.ktor.client.HttpClient
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.http.ContentType
-import io.ktor.serialization.kotlinx.KotlinxSerializationConverter
-import kotlinx.serialization.json.Json
 
 @JsExport
 enum class WarGamingRegion(val region: String) {
