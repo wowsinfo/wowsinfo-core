@@ -22,17 +22,8 @@ data class WarGamingResponse<T>(
 data class WarGamingMeta(
     val count: Int,
     val hidden: Int? = null,
-    @SerialName("page_total")
-    val pageTotal: Int? = null,
+    @SerialName("page_total") val pageTotal: Int? = null,
     val total: Int? = null,
     val limit: Int? = null,
     val page: Int? = null,
-)
-
-@JsExport
-@Serializable
-data class Player(
-    @SerialName("account_id")
-    val accountId: String,  // numeric field for account ID, need to be string to avoid overflow
-    val nickname: String   // string field for player name
 )

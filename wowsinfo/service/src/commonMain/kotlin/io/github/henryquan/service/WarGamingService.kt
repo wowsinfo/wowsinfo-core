@@ -1,6 +1,7 @@
 package io.github.henryquan.service
 
 import BaseService
+import io.github.henryquan.model.Clan
 import io.github.henryquan.model.Player
 import io.github.henryquan.model.WarGamingResponse
 
@@ -61,5 +62,9 @@ open class WarGamingService(
 
     suspend fun getPlayerList(query: String): WarGamingResponse<List<Player>> {
         return getObject("/account/list/", prepareParams(mapOf("search" to query)))
+    }
+
+    suspend fun getClanList(query: String): WarGamingResponse<List<Clan>> {
+        return getObject("/clans/list/", prepareParams(mapOf("search" to query)))
     }
 }
