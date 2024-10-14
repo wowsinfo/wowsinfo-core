@@ -5,8 +5,8 @@ import kotlinx.serialization.Serializable
 
 // WarGaming usually returns a map because you can query multiple players at once
 typealias PlayerList = List<Player>
-typealias PlayerPersonalDataMap = Map<String, PlayerPersonalData>
-typealias PlayerAchievementsMap = Map<String, PlayerAchievements>
+typealias PlayerPersonalDataMap = Map<String, PlayerPersonalData?>
+typealias PlayerAchievementsMap = Map<String, PlayerAchievements?>
 
 
 //region Player

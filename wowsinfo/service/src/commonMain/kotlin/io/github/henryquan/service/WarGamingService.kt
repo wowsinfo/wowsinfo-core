@@ -1,32 +1,18 @@
 package io.github.henryquan.service
 
 import BaseService
-import io.github.henryquan.model.Clan
-import io.github.henryquan.model.Player
+import io.github.henryquan.model.ClanBattleSeasonStatsMap
+import io.github.henryquan.model.ClanDetailMap
+import io.github.henryquan.model.ClanList
+import io.github.henryquan.model.ClanPlayerDataMap
+import io.github.henryquan.model.PlayerAchievementsMap
+import io.github.henryquan.model.PlayerList
+import io.github.henryquan.model.PlayerPersonalDataMap
+import io.github.henryquan.model.WarGamingLanguage
+import io.github.henryquan.model.WarGamingRegion
 import io.github.henryquan.model.WarGamingResponse
+import io.github.henryquan.model.WarGamingStatsType
 
-@JsExport
-enum class WarGamingRegion(val region: String) {
-    NA("com"), EU("eu"), ASIA("asia")
-}
-
-@JsExport
-enum class WarGamingLanguage(val code: String, val displayName: String) {
-    CS("cs", "Czech"),
-    DE("de", "German"),
-    EN("en", "English"),
-    ES("es", "Spanish"),
-    FR("fr", "French"),
-    JA("ja", "Japanese"),
-    PL("pl", "Polish"),
-    RU("ru", "Russian"),
-    TH("th", "Thai"),
-    ZH_HANT("zh-tw", "Traditional Chinese"),
-    TR("tr", "Turkish"),
-    ZH_HANS("zh-cn", "Simplified Chinese"),
-    PT_BR("pt-br", "Portuguese (Brazil)"),
-    ES_MX("es-mx", "Spanish (Mexico)")
-}
 
 open class WarGamingService(
     region: WarGamingRegion,
@@ -60,11 +46,77 @@ open class WarGamingService(
         return params + mapOf("application_id" to key, "language" to language.code)
     }
 
-    suspend fun getPlayerList(query: String): WarGamingResponse<List<Player>> {
+    //region Player
+
+    suspend fun getPlayerList(query: String): WarGamingResponse<PlayerList> {
         return getObject("/account/list/", prepareParams(mapOf("search" to query)))
     }
 
-    suspend fun getClanList(query: String): WarGamingResponse<List<Clan>> {
+    suspend fun getPlayerPersonalData(
+        accountIds: List<String>,
+        extras: Array<WarGamingStatsType> = WarGamingStatsType.pvpStatsType
+    ): WarGamingResponse<PlayerPersonalDataMap> {
+        return getObject(
+            "/account/info/", prepareParams(
+                mapOf(
+                    "account_id" to accountIds.joinToString(","),
+                    "extra" to extras.joinToString(",")
+                )
+            )
+        )
+    }
+
+    suspend fun getPlayerAchievements(accountIds: List<String>): WarGamingResponse<PlayerAchievementsMap> {
+        return getObject(
+            "/account/achievements/", prepareParams(
+                mapOf("account_id" to accountIds.joinToString(","))
+            )
+        )
+    }
+
+    //endregion
+
+    //region Clan
+
+    suspend fun getClanList(query: String): WarGamingResponse<ClanList> {
         return getObject("/clans/list/", prepareParams(mapOf("search" to query)))
     }
+
+    suspend fun getClanDetails(
+        clanIds: List<String>,
+        includeMembers: Boolean = true
+    ): WarGamingResponse<ClanDetailMap> {
+        return getObject(
+            "/clans/info/", prepareParams(
+                mapOf(
+                    "clan_id" to clanIds.joinToString(","),
+                    if (includeMembers) "extra" to "members" else "extra" to ""
+                )
+            )
+        )
+    }
+
+    suspend fun getClanPlayerData(
+        accountIds: List<String>,
+        includeClanData: Boolean = true
+    ): WarGamingResponse<ClanPlayerDataMap> {
+        return getObject(
+            "/clans/accountinfo/", prepareParams(
+                mapOf(
+                    "account_id" to accountIds.joinToString(","),
+                    "extra" to if (includeClanData) "clan" else ""
+                )
+            )
+        )
+    }
+
+    suspend fun getClanBattleSeasonStats(
+        accountId: String,
+    ): WarGamingResponse<ClanBattleSeasonStatsMap> {
+        return getObject(
+            "/clans/seasonstats/", prepareParams(mapOf("account_id" to accountId))
+        )
+    }
+
+    //endregion
 }

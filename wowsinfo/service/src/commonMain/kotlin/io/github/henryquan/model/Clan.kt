@@ -4,9 +4,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 typealias ClanList = List<Clan>
-typealias ClanDetailMap = Map<String, ClanDetail>
-typealias ClanPlayerDataMap = Map<String, ClanPlayerData>
-typealias ClanBattleSeasonStatsMap = Map<String, ClanBattleSeasonStats>
+typealias ClanDetailMap = Map<String, ClanDetail?>
+typealias ClanPlayerDataMap = Map<String, ClanPlayerData?>
+typealias ClanBattleSeasonStatsMap = Map<String, ClanBattleSeasonStats?>
 
 //region Clan
 
@@ -38,7 +38,7 @@ data class ClanDetail(
     @SerialName("members_ids") val membersIds: List<Long>,
     @SerialName("creator_id") val creatorId: Long,
     @SerialName("clan_id") val clanId: Long,
-    val members: Map<String, ClanMember>,
+    val members: Map<String, ClanMember>? = null,
     @SerialName("old_name") val oldName: String,
     @SerialName("is_clan_disbanded") val isClanDisbanded: Boolean,
     @SerialName("renamed_at") val renamedAt: Long,
@@ -67,7 +67,21 @@ data class ClanPlayerData(
     @SerialName("clan_id") val clanId: Long,
     @SerialName("joined_at") val joinedAt: Long,
     @SerialName("account_id") val accountId: Long,
-    @SerialName("account_name") val accountName: String
+    @SerialName("account_name") val accountName: String,
+    val clan: ClanPlayerClan? = null
+)
+
+/**
+ * This is an optional model for getting the clan data from a player.
+ */
+@JsExport
+@Serializable
+data class ClanPlayerClan(
+    @SerialName("members_count") val membersCount: Int,
+    @SerialName("created_at") val createdAt: Long,
+    @SerialName("clan_id") val clanId: Long,
+    val tag: String,
+    val name: String
 )
 
 //endregion
