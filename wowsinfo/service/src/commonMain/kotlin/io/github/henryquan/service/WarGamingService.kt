@@ -40,7 +40,10 @@ open class WarGamingService(
 //    }
 
     /**
-     * Prepare common parameters for WarGaming API requests.
+     * Prepare common parameters for WarGaming API requests,
+     * such as the application ID and language.
+     * @param params The parameters to prepare.
+     * @return The parameters with the application ID and language added.
      */
     private fun prepareParams(params: Map<String, String>): Map<String, String> {
         return params + mapOf("application_id" to key, "language" to language.code)
@@ -48,10 +51,19 @@ open class WarGamingService(
 
     //region Player
 
+    /**
+     * Get a list of players based on a query.
+     * @param query The search query, usually a player name.
+     */
     suspend fun getPlayerList(query: String): WarGamingResponse<PlayerList> {
         return getObject("/account/list/", prepareParams(mapOf("search" to query)))
     }
 
+    /**
+     * Get personal data for a list of players.
+     * @param accountIds A list of account IDs.
+     * @param extras An array of extra stats data to include in the response.
+     */
     suspend fun getPlayerPersonalData(
         accountIds: List<String>,
         extras: Array<WarGamingStatsType> = WarGamingStatsType.pvpStatsType
@@ -66,6 +78,10 @@ open class WarGamingService(
         )
     }
 
+    /**
+     * Get achievements for a list of players.
+     * @param accountIds A list of account IDs.
+     */
     suspend fun getPlayerAchievements(accountIds: List<String>): WarGamingResponse<PlayerAchievementsMap> {
         return getObject(
             "/account/achievements/", prepareParams(
@@ -78,10 +94,19 @@ open class WarGamingService(
 
     //region Clan
 
+    /**
+     * Get a list of clans based on a query.
+     * @param query The search query, usually the clan tag.
+     */
     suspend fun getClanList(query: String): WarGamingResponse<ClanList> {
         return getObject("/clans/list/", prepareParams(mapOf("search" to query)))
     }
 
+    /**
+     * Get detailed information for a list of clans.
+     * @param clanIds A list of clan IDs.
+     * @param includeMembers Whether to include member data in the response.
+     */
     suspend fun getClanDetails(
         clanIds: List<String>,
         includeMembers: Boolean = true
@@ -96,6 +121,11 @@ open class WarGamingService(
         )
     }
 
+    /**
+     * Get player data for a list of clans.
+     * @param accountIds A list of account IDs.
+     * @param includeClanData Whether to include player's clan data.
+     */
     suspend fun getClanPlayerData(
         accountIds: List<String>,
         includeClanData: Boolean = true
@@ -110,6 +140,10 @@ open class WarGamingService(
         )
     }
 
+    /**
+     * Get clan battle season stats for a single player.
+     * @param accountId The account ID of the player.
+     */
     suspend fun getClanBattleSeasonStats(
         accountId: String,
     ): WarGamingResponse<ClanBattleSeasonStatsMap> {
