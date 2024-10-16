@@ -8,9 +8,11 @@ import io.github.henryquan.model.ClanPlayerDataMap
 import io.github.henryquan.model.PlayerAchievementsMap
 import io.github.henryquan.model.PlayerList
 import io.github.henryquan.model.PlayerPersonalDataMap
+import io.github.henryquan.model.PlayerWarshipStatsListMap
 import io.github.henryquan.model.WarGamingLanguage
 import io.github.henryquan.model.WarGamingRegion
 import io.github.henryquan.model.WarGamingResponse
+import io.github.henryquan.model.WarGamingShipStatsType
 import io.github.henryquan.model.WarGamingStatsType
 
 
@@ -86,6 +88,31 @@ open class WarGamingService(
         return getObject(
             "/account/achievements/", prepareParams(
                 mapOf("account_id" to accountIds.joinToString(","))
+            )
+        )
+    }
+
+    //endregion
+
+    //region Warships
+
+    /**
+     * Get detailed stats for a list of warships for a single player.
+     * @param accountId The account ID of the player.
+     * @param shipIds A list of ship IDs, optional.
+     */
+    suspend fun getPlayerWarshipStatsList(
+        accountId: String,
+        extras: Array<WarGamingShipStatsType> = WarGamingShipStatsType.pvpTypes,
+        shipIds: List<String> = emptyList(),
+    ): WarGamingResponse<PlayerWarshipStatsListMap> {
+        return getObject(
+            "/ships/stats/", prepareParams(
+                mapOf(
+                    "account_id" to accountId,
+                    "extra" to extras.joinToString(","),
+                    "ship_id" to shipIds.joinToString(",")
+                ),
             )
         )
     }

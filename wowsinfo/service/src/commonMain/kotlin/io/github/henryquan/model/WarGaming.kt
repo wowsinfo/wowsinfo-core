@@ -46,3 +46,26 @@ enum class WarGamingStatsType(val type: String) {
         val pvpStatsType: Array<WarGamingStatsType> = arrayOf(PVP_SOLO, PVP_DIV2, PVP_DIV3)
     }
 }
+
+@JsExport
+enum class WarGamingShipStatsType(val type: String) {
+    CLUB("club"),
+    OPER_DIV("oper_div"),
+    OPER_DIV_HARD("oper_div_hard"),
+    OPER_SOLO("oper_solo"),
+    PVE("pve"),
+    PVE_DIV2("pve_div2"),
+    PVE_DIV3("pve_div3"),
+    PVE_SOLO("pve_solo"),
+    PVP_DIV2("pvp_div2"),
+    PVP_DIV3("pvp_div3"),
+    PVP_SOLO("pvp_solo"),
+    RANK_DIV2("rank_div2"),
+    RANK_DIV3("rank_div3"),
+    RANK_SOLO("rank_solo");
+
+    companion object {
+        val allTypes: Array<WarGamingShipStatsType> = enumValues()
+        val pvpTypes: Array<WarGamingShipStatsType> = arrayOf(PVP_SOLO, PVP_DIV2, PVP_DIV3)
+    }
+}
