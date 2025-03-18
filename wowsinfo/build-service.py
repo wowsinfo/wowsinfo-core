@@ -51,8 +51,19 @@ def patch_service(path: str):
     print(f'Patched {path}')
 
 if __name__ == '__main__':
+    import sys
+    import shutil
     # run gradlew :service:jsProductionRun and patch
     print('Running gradlew :service:jsProductionRun')
-    gradlew_task = subprocess.run(['./gradlew', ':service:jsProductionRun'], capture_output=True)
+    gradlew = r'.\gradlew.bat' if sys.platform == 'win32' else r'./gradlew'
+
+    yarn_update = subprocess.run([gradlew, 'kotlinUpgradeYarnLock'], capture_output=True)
+    gradlew_task = subprocess.run([gradlew, ':service:jsProductionRun'], capture_output=True)
     gradlew_task.check_returncode()
     patch_service('build/js/packages/wowsinfo-service/kotlin/ktor-ktor-client-core.mjs')
+
+    print('Moving to react-native-app')
+    react_native_path = '../../react-native-app/res/3rd/wowsinfo-service'
+    # clear the existing folder
+    shutil.rmtree(react_native_path, ignore_errors=True)
+    shutil.move('build/js/packages/wowsinfo-service', react_native_path)
