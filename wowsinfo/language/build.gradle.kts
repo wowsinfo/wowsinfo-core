@@ -14,7 +14,7 @@ kotlin {
         }
     }
     js {
-        moduleName = "wowsinfo-language"
+        outputModuleName = "wowsinfo-language"
         nodejs {}
         binaries.executable()
         generateTypeScriptDefinitions()

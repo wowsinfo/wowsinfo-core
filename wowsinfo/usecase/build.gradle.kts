@@ -5,7 +5,7 @@ plugins {
 
 kotlin {
     js {
-        moduleName = "wowsinfo-usecase"
+        outputModuleName = "wowsinfo-usecase"
         binaries.executable()
         generateTypeScriptDefinitions()
         nodejs()
