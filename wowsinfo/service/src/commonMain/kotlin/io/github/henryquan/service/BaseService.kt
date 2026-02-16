@@ -16,8 +16,20 @@ import kotlinx.serialization.json.Json
 expect fun getEngineFactory(): HttpClientEngineFactory<HttpClientEngineConfig>
 
 /**
+ * Timeout configuration for HTTP requests.
+ */
+private object HttpTimeouts {
+    const val REQUEST_TIMEOUT_MS = 30000L
+    const val CONNECT_TIMEOUT_MS = 10000L
+    const val SOCKET_TIMEOUT_MS = 10000L
+}
+
+/**
  * Singleton HttpClient provider following Ktor 3 best practices.
  * Reusing a single client instance improves performance by sharing connection pools.
+ * 
+ * Note: HttpClient lifecycle is managed by the runtime. For long-running applications,
+ * consider calling `client.close()` during application shutdown to release resources.
  */
 object HttpClientProvider {
     val client = HttpClient(getEngineFactory()) {
@@ -32,9 +44,9 @@ object HttpClientProvider {
 
         // Request timeout configuration
         install(HttpTimeout) {
-            requestTimeoutMillis = 30000
-            connectTimeoutMillis = 10000
-            socketTimeoutMillis = 10000
+            requestTimeoutMillis = HttpTimeouts.REQUEST_TIMEOUT_MS
+            connectTimeoutMillis = HttpTimeouts.CONNECT_TIMEOUT_MS
+            socketTimeoutMillis = HttpTimeouts.SOCKET_TIMEOUT_MS
         }
 
         // Default headers for all requests
