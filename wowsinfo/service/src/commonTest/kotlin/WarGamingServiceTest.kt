@@ -1,5 +1,5 @@
-import io.github.henryquan.service.WarGamingLanguage
-import io.github.henryquan.service.WarGamingRegion
+import io.github.henryquan.model.WarGamingLanguage
+import io.github.henryquan.model.WarGamingRegion
 import io.github.henryquan.service.WarGamingService
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test

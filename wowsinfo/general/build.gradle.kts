@@ -12,8 +12,8 @@ kotlin {
             }
         }
     }
-    js(IR) {
-        moduleName = "wowsinfo-general"
+    js {
+        outputModuleName = "wowsinfo-general"
         binaries.executable()
         generateTypeScriptDefinitions()
         nodejs()

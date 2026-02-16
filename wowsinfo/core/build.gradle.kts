@@ -5,7 +5,7 @@ plugins {
 
 kotlin {
     js {
-        moduleName = "wowsinfo-core"
+        outputModuleName = "wowsinfo-core"
         binaries.executable()
         generateTypeScriptDefinitions()
         nodejs()

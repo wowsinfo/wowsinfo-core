@@ -6,7 +6,7 @@ plugins {
 kotlin {
     // experiment with JavaScript first
     js {
-        moduleName = "wowsinfo-service"
+        outputModuleName = "wowsinfo-service"
         binaries.executable()
         generateTypeScriptDefinitions()
         nodejs()
@@ -47,5 +47,11 @@ kotlin {
                 optIn("kotlin.js.ExperimentalJsExport")
             }
         }
+    }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.Kotlin2JsCompile> {
+    compilerOptions {
+        freeCompilerArgs.add("-Xes-long-as-bigint")
     }
 }

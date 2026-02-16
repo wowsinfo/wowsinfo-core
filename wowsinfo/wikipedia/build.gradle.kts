@@ -14,7 +14,7 @@ kotlin {
         }
     }
     js {
-        moduleName = "wowsinfo-wikipedia"
+        outputModuleName = "wowsinfo-wikipedia"
         binaries.executable()
         generateTypeScriptDefinitions()
         nodejs()

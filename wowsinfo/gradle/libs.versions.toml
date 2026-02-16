@@ -1,8 +1,8 @@
 [versions]
-kotlin = "2.0.20"
-ktor = "2.3.12"
-serialization-version = "1.7.3"
-coroutines = "1.9.0"
+kotlin = "2.3.0"
+ktor = "3.4.0"
+serialization-version = "1.8.0"
+coroutines = "1.10.2"
 
 [libraries]
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
